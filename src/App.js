@@ -8,6 +8,7 @@ import Navbar from './components/Navbar'
 import { createBrowserHistory } from 'history';
 import Dashboard from './components/Dashboard'
 import WelcomeScreen from './components/WelcomeScreen'
+import Lesson from './components/Lesson'
 
 
 export default class App extends React.Component{
@@ -16,9 +17,9 @@ export default class App extends React.Component{
     return (
       <div className="App">
         <Router>
-          <Navbar />
           <Route exact path="/" component={WelcomeScreen} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="/lesson" component={Lesson} />
         </Router>
       </div>
     );
