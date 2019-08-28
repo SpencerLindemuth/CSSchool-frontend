@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap');
+
+*{
+  font-family: 'Alegreya Sans', sans-serif;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#navbar {
+  background-color: #284253;
+  width: 100%;
+}
+
+#navbar img {
+  max-width: 95%;
+}
+
+#welcome-div{
+  margin-top: 5%;
+  color: white;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  font-size: 2em;
+}
+
+#welcome-div h1{
+  font-size: 3em;
+}
+
+.App{
+  background-color: #4D7186;
+  height: 100vh;
+}
+
+.test{
+  color: gray;
+}
+
+#activeTarget{
+
+}
+
+#gamescreen{
+  color: black;
+  width: 90vw;
+  height: 70vh;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.game{
+  width: 98%;
+  height: 98%;
+  background-color: white;
+}
+
+#code{
+  text-align: left;
+}
+
+#nextlevel{
+  color: white;
+  border: none;
+}
+
+#css{
+  padding-left: 10px;
+  height: 100%;
+}
+
+#answerbox{
+  resize: none;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  max-height: 100%;
+  border: none;
+  font-size: calc(10px + 2vmin);
+  line-height: calc(15px + 2vmin);
+  outline: none;
+}
