@@ -157,6 +157,25 @@ button:hover{
   width: 45vw;
 }
 
+#codeview{
+  font-size: 2em;
+  text-align: left;
+  white-space: pre-wrap;
+}
+
+#codeview p{
+  padding-left: 3%;
+}
+
+#lessonview{
+  overflow: scroll;
+}
+
+#lessonview p{
+  padding: 2%;
+  font-size: 1.5em;
+}
+
 @media only screen and (max-width: 1000px){
 
   #navbar{

@@ -1,12 +1,14 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
 
-export default class lessonView extends React.Component {
+export default class LessonView extends React.Component {
 
 
     render(){
         return(
-            <div>
-                
+            <div className={"game"} id="lessonview">
+                <h1>{this.props.title}</h1>
+                <ReactMarkdown source={this.props.lesson} /> 
             </div>
         )
     }
