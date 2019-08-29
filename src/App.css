@@ -6,18 +6,23 @@
 
 button{
   width: calc(200px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
-  height: 10vh;
+  height: calc(5vh + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
   border-radius: 8px;
   border: none;
   background-color: #F4A720;
   color: white;
+  margin: 1%;
 }
 
 button:hover{
   background-color: #DE981E;
   color: #F6F6F6;
   cursor: pointer;
+}
+
+#lessonbutton{
+  background-color: #2087F5;
 }
 
 .App {
@@ -93,17 +98,19 @@ button:hover{
 }
 
 #gamescreen{
-  color: black;
+  margin-top: 2%;
+  color: white;
   width: 90vw;
   height: 70vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  margin: auto;
 }
 
 .game{
   width: 98%;
   height: 98%;
-  background-color: white;
+  background-color: #2C363F;
 }
 
 #code{
@@ -133,4 +140,61 @@ button:hover{
   font-size: calc(10px + 2vmin);
   line-height: calc(15px + 2vmin);
   outline: none;
+}
+
+
+.actionbar .leftbuttons {
+  float:left;
+  width: 45vw;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.actionbar .rightbuttons{
+  margin-bottom: 1%;
+  margin-top: 1%;
+  float: right;
+  width: 45vw;
+}
+
+@media only screen and (max-width: 1000px){
+
+  #navbar{
+    text-align: center;
+  }
+  .actionbar button{
+    margin-top: 4%;
+    width: calc(20vw + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    height: calc(5vh + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  }
+  .actionbar .leftbuttons {
+    float: none;;
+    width: 45vw;
+  }
+  
+  .actionbar .rightbuttons{
+    float: none;
+    width: 45vw;
+  }
+
+  #gamescreen{
+    height: 50vh;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  #gamescreen{
+    color: white;
+    width: 90vw;
+    height: 30vh;
+    display: block;
+    margin: auto;
+  }
+
+  .game{
+    margin-top: 4%;
+    width: 98%;
+    height: 98%;
+    background-color: #2C363F;
+  }
 }
