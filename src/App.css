@@ -25,6 +25,11 @@ button:hover{
   background-color: #2087F5;
 }
 
+#nextlevelbutton{
+  outline: none;
+  cursor: default;
+}
+
 .App {
   text-align: center;
 }
@@ -93,15 +98,11 @@ button:hover{
   color: gray;
 }
 
-#activeTarget{
-
-}
-
 #gamescreen{
   margin-top: 2%;
   color: white;
   width: 90vw;
-  height: 70vh;
+  height: 65vh;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin: auto;
@@ -117,10 +118,9 @@ button:hover{
   text-align: left;
 }
 
-#nextlevel{
-  color: white;
-  border: none;
-}
+/* #nextlevelbutton{
+} */
+
 
 #css{
   padding-left: 10px;
@@ -161,6 +161,7 @@ button:hover{
   font-size: 2em;
   text-align: left;
   white-space: pre-wrap;
+  overflow: scroll;
 }
 
 #codeview p{
@@ -174,6 +175,10 @@ button:hover{
 #lessonview p{
   padding: 2%;
   font-size: 1.5em;
+}
+
+#answerbuttonspans button{
+  width: fit-content;
 }
 
 @media only screen and (max-width: 1000px){
@@ -198,6 +203,18 @@ button:hover{
 
   #gamescreen{
     height: 50vh;
+  }
+
+  #answerbuttonspans{
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 5%;
+  }
+  #answerbuttonspans button{
+    width: 48%;
+  }
+  #codeview{
+    font-size: 100%;
   }
 }
 

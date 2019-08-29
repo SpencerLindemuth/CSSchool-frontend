@@ -13,7 +13,6 @@ export default class ActionView extends React.Component {
               let index = parsedArray.indexOf("}")
               let rule = parsedArray.splice(0, index+1)
               let parsedRule = rule.join("")
-              console.log(parsedRule)
               sheet.insertRule(parsedRule, sheet.cssRules.length);
     
             }
@@ -21,6 +20,15 @@ export default class ActionView extends React.Component {
           catch(error){
             console.log(error)
           }
+    }
+
+    getNextLevelButton = () => {
+        let button = document.getElementById("nextlevelbutton")
+        if(button){
+            button.addEventListener("click", () => {
+                this.props.handleNextClick()
+            })
+        }
     }
 
     render(){
@@ -33,6 +41,7 @@ export default class ActionView extends React.Component {
 
     componentDidMount = () => {
         this.applyCss()
+        this.getNextLevelButton()
     }
 
 }
