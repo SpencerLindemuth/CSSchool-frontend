@@ -44,8 +44,14 @@ export default class Lesson extends React.Component {
 
     handleNextClick = () => {
         if(this.state.guessed){
-            console.log("hello from parent")
+            this.removeStyles()
+            this.props.history.push(`/lesson/${this.pathName() + 1}`)
+            this.setState({
+                lessonView: true,
+                guessed: false
+            })
         }
+
     }
 
     getComponent = () => {
@@ -64,6 +70,11 @@ export default class Lesson extends React.Component {
                 lessonView: false,
                 guessed: true, 
             })
+        else{
+            this.setState({
+                guessed: true
+            })
+        }
         let target = ev.target
         console.log(this.props.lessons[this.pathName() - 1][`${target.name}_action_css`])
         setTimeout(() => {
@@ -76,6 +87,15 @@ export default class Lesson extends React.Component {
         this.setState({
             guessed: false
         })
+    }
+
+    prevButton = () => {
+        this.removeStyles()
+        this.setState({
+            guessed: false,
+            lessonView: true,
+        })
+        this.props.history.goBack()
     }
 
     removeStyles = () => {
@@ -97,7 +117,7 @@ export default class Lesson extends React.Component {
                 <Navbar history={this.props.history}/>
                 <span className="actionbar">
                     <span className="leftbuttons">
-                        <button>&#8592; Prev</button>
+                        <button onClick={() => this.props.history.goBack()}>&#8592; Prev</button>
                         <button id="lessonbutton" onClick={this.handleLessonClick}>{this.state.lessonView ? "Code": "Lesson"}</button>
                     </span>
                     <span className="rightbuttons">
