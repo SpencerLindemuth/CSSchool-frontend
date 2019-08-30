@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import CodeView from './lessonComponents/codeView'
 import ActionView from './lessonComponents/actionView'
 import LessonView from './lessonComponents/lessonView'
+import PageNotFound from './lessonComponents/pagenotfound'
 
 export default class Lesson extends React.Component {
 
@@ -44,16 +45,22 @@ export default class Lesson extends React.Component {
 
     handleNextClick = () => {
         if(this.state.guessed){
-            console.log("hello from parent")
+            this.removeStyles()
+            this.props.history.push(`/lesson/${this.pathName() + 1}`)
+            this.setState({
+                lessonView: true,
+                guessed: false
+            })
         }
+
     }
 
     getComponent = () => {
         if(this.state.lessonView){
-           return  <LessonView lesson={this.props.lessons[this.pathName() - 1].lesson} title={this.props.lessons[this.pathName() - 1].title}/>
+           return  <LessonView lesson={this.findLesson().lesson} title={this.findLesson().title}/>
         }
         else{
-           return <ActionView html={this.props.lessons[this.pathName() - 1].html} css={this.props.lessons[this.pathName() - 1].css} handleNextClick={this.handleNextClick}/>
+           return <ActionView html={this.findLesson().html} css={this.findLesson().css} handleNextClick={this.handleNextClick}/>
         }
     }
 
@@ -64,10 +71,15 @@ export default class Lesson extends React.Component {
                 lessonView: false,
                 guessed: true, 
             })
+        else{
+            this.setState({
+                guessed: true
+            })
+        }
         let target = ev.target
-        console.log(this.props.lessons[this.pathName() - 1][`${target.name}_action_css`])
+        console.log(this.findLesson()[`${target.name}_action_css`])
         setTimeout(() => {
-        this.applyCss(this.props.lessons[this.pathName() - 1][`${target.name}_action_css`])
+        this.applyCss(this.findLesson()[`${target.name}_action_css`])
         },0)
     }
 
@@ -76,6 +88,20 @@ export default class Lesson extends React.Component {
         this.setState({
             guessed: false
         })
+    }
+
+    prevButton = () => {
+        this.removeStyles()
+        this.setState({
+            guessed: false,
+            lessonView: true,
+        })
+        if((this.pathName() - 1) === 0){
+            this.props.history.push("/")
+        }
+        else{
+            this.props.history.push(`/lesson/${this.pathName() - 1}`)
+        }
     }
 
     removeStyles = () => {
@@ -88,23 +114,44 @@ export default class Lesson extends React.Component {
         })
     }
 
+    findLesson = () => {
+        const id = this.pathName()
+        let lesson = this.props.lessons.filter(les => {
+            return les.lesson_number == id
+        })
+        if(lesson.length === 0){
+            return null
+        }
+        else{
+            return lesson[0]
+        }
+        // console.log("lesson", this.props.lessons)
+        // this.setState({
+        //     lesson: lesson
+        // })
+    }
+
     render(){
 
-        const lesson = this.props.lessons[this.pathName() - 1]
+        // const lesson = this.props.lessons[this.pathName() - 1]
+        const lesson = this.findLesson()
 
         return(
             <div>
                 <Navbar history={this.props.history}/>
-                <span className="actionbar">
+                <div id="pagenotfound">{
+                    lesson ? null : <PageNotFound history={this.props.history}/>
+                }</div>
+                {lesson ? <span className="actionbar">
                     <span className="leftbuttons">
-                        <button>&#8592; Prev</button>
+                        <button onClick={this.prevButton}>&#8592; Prev</button>
                         <button id="lessonbutton" onClick={this.handleLessonClick}>{this.state.lessonView ? "Code": "Lesson"}</button>
                     </span>
                     <span className="rightbuttons">
                         <button onClick={this.resetButton}>Reset</button>
                         <button>Save</button>
                     </span>
-                </span>
+                    </span> : null }
                 <div className="helperdiv">
                     <div id="gamescreen">
                         {lesson ? <CodeView code={lesson.template} /> : null}
@@ -126,6 +173,9 @@ export default class Lesson extends React.Component {
     }
 
     componentDidMount = () => {
+        if(!this.state.lesson){
+            this.findLesson()
+        }
     }
 
 }
