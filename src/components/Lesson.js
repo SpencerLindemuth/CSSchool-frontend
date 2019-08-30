@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import CodeView from './lessonComponents/codeView'
 import ActionView from './lessonComponents/actionView'
 import LessonView from './lessonComponents/lessonView'
+import PageNotFound from './lessonComponents/pagenotfound'
 
 export default class Lesson extends React.Component {
 
@@ -138,7 +139,10 @@ export default class Lesson extends React.Component {
         return(
             <div>
                 <Navbar history={this.props.history}/>
-                <span className="actionbar">
+                <div id="pagenotfound">{
+                    lesson ? null : <PageNotFound history={this.props.history}/>
+                }</div>
+                {lesson ? <span className="actionbar">
                     <span className="leftbuttons">
                         <button onClick={this.prevButton}>&#8592; Prev</button>
                         <button id="lessonbutton" onClick={this.handleLessonClick}>{this.state.lessonView ? "Code": "Lesson"}</button>
@@ -147,7 +151,7 @@ export default class Lesson extends React.Component {
                         <button onClick={this.resetButton}>Reset</button>
                         <button>Save</button>
                     </span>
-                </span>
+                    </span> : null }
                 <div className="helperdiv">
                     <div id="gamescreen">
                         {lesson ? <CodeView code={lesson.template} /> : null}

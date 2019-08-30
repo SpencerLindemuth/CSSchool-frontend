@@ -8,7 +8,7 @@ export default class LessonView extends React.Component {
         return(
             <div className={"game"} id="lessonview">
                 <h1>{this.props.title}</h1>
-                <ReactMarkdown source={this.props.lesson} /> 
+                <ReactMarkdown source={this.props.lesson} escapeHtml={false} /> 
             </div>
         )
     }
