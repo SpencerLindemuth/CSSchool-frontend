@@ -18,6 +18,7 @@ export default class CreateLesson extends React.Component {
         button4text: "",
         button4css: "",
         styleSheetLength: 0,
+        stylesAdded: [],
     }
 
     lessonTextChange = (ev) => {
@@ -46,30 +47,48 @@ export default class CreateLesson extends React.Component {
     }
 
     handleStyle = (event) => {
+        // let button = document.getElementById("nextlevel")
+        // button.style = this.state.inputRule
         let sheet = window.document.styleSheets[0];
-        if(event.target.value.length === 0){
-            sheet.deleteRule(sheet.cssRules.length-1)
-        }else{
-        if(sheet.cssRules.length !== this.state.styleSheetLength){
-            sheet.deleteRule(sheet.cssRules.length-1)
-        }
         let parsedString = this.state.css.replace(/\s/g, "")
         let parsedArray = parsedString.split("")
-        try{
-            for (let i = 0; i < parsedArray.length; i++) {
-            let index = parsedArray.indexOf("}")
-            let rule = parsedArray.splice(0, index+1)
-            let parsedRule = rule.join("")
-            console.log(parsedRule)
-            sheet.insertRule(parsedRule, sheet.cssRules.length);
-
+        let index = parsedArray.indexOf("}")
+        let rules
+        if(index === -1){
+            return null
+        }else{
+            let completeRules = parsedString.match(/[\s\S]+}/g)
+            let rulesArray = completeRules[0].split("}")
+            let completeRulesArray = rulesArray.map(element => element + "}")
+            console.log(completeRulesArray)
+            for(let i = 0; i < completeRulesArray.length; i++){
+                if(completeRulesArray[i] !== "}")
+                sheet.insertRule(completeRulesArray[i], sheet.cssRules.length);
             }
         }
-        catch(error){
-            console.log(error)
-        }
-        }
-    }
+        //let parsedRule = rules.join("")
+        // if(this.state.stylesAdded !== 0){
+        //     let i = 0;
+        //     while(i < this.state.stylesAdded){
+        //         sheet.deleteRule(sheet.cssRules.length-1)
+        //         this.setState({stylesAdded: this.state.stylesAdded - 1})
+        //         i++
+        //     }
+        //     this.setState({stylesAdded: this.state.stylesAdded - i})
+        // }
+        // try{
+        //     for (let i = 0; i < parsedArray.length; i++) {
+        //         console.log(parsedRule)
+        //         sheet.insertRule(parsedRule, sheet.cssRules.length);
+        //         this.setState({
+        //             stylesAdded: [...this.state.stylesAdded, ...parsedRule]
+        //         })
+        //     }
+        // }
+        // catch(error){
+        //     console.log()
+        // }
+      }
 
     buttonTextChange = (ev) => {
         switch(ev.target.name){
@@ -211,7 +230,7 @@ export default class CreateLesson extends React.Component {
 
     componentDidMount = () => {
         this.setState({
-          styleSheetLength: window.document.styleSheets[0].cssRules.length
+            styleSheetLength: window.document.styleSheets[0].cssRules.length
         })
       }
 
