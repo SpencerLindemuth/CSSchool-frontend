@@ -18,7 +18,7 @@ export default class CreateLesson extends React.Component {
         button4text: "",
         button4css: "",
         styleSheetLength: 0,
-        stylesAdded: [],
+        stylesAdded: 0,
     }
 
     lessonTextChange = (ev) => {
@@ -53,18 +53,40 @@ export default class CreateLesson extends React.Component {
         let parsedString = this.state.css.replace(/\s/g, "")
         let parsedArray = parsedString.split("")
         let index = parsedArray.indexOf("}")
-        let rules
+        console.log("initial", this.state.stylesAdded)
+        let i = 0
+        let k = 0
+        while(i < this.state.stylesAdded){
+            sheet.deleteRule(sheet.cssRules.length-1)
+            i++
+        }
+        console.log("how many times i'm running", i)
+        this.setState({stylesAdded: 0})
         if(index === -1){
             return null
         }else{
             let completeRules = parsedString.match(/[\s\S]+}/g)
-            let rulesArray = completeRules[0].split("}")
+            let rulesArray
+            if(completeRules !== null){
+                rulesArray = completeRules[0].split("}")
+            }
+            else{return null}
             let completeRulesArray = rulesArray.map(element => element + "}")
             console.log(completeRulesArray)
+            let j = 0
             for(let i = 0; i < completeRulesArray.length; i++){
                 if(completeRulesArray[i] !== "}")
-                sheet.insertRule(completeRulesArray[i], sheet.cssRules.length);
+                try{
+                    sheet.insertRule(completeRulesArray[i], sheet.cssRules.length);
+                    j++
+                }catch(error){
+                }
             }
+            console.log("IVE INSERTED THIS MANY RULES: ", j)
+            console.log("but my sheet is only ", sheet.cssRules.length, " enteries long...")
+            this.setState((prevState) =>  {
+                return {stylesAdded: prevState.stylesAdded + (j)}
+            })
         }
         //let parsedRule = rules.join("")
         // if(this.state.stylesAdded !== 0){
