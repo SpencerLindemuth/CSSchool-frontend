@@ -243,7 +243,14 @@ button:hover{
   color: white;
 }
 #livepreview{
+  color: white;
+  font-size: calc(12px + 2vmin);
   height: 80vh;
+  overflow: auto;
+}
+
+#livepreview p{
+  margin-top: 0;
 }
 @media only screen and (max-width: 1000px){
 

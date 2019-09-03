@@ -19,6 +19,7 @@ export default class CreateLesson extends React.Component {
         button4css: "",
         styleSheetLength: 0,
         stylesAdded: 0,
+        lessonTemplateFocus: false,
     }
 
     lessonTextChange = (ev) => {
@@ -34,9 +35,21 @@ export default class CreateLesson extends React.Component {
     }
 
     lessonHtmlChange = (ev) => {
-        this.setState({
-            lessonHtml: ev.target.value
-        })
+        let target = ev.target.value
+        let sanitizeCheck = target.match(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img)
+        if(sanitizeCheck){
+            let sanitized = target.replace(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img, "")
+            this.setState({
+                lessonHtml: sanitized
+            })
+            console.log("SCRIPTER NO SCRIPTING")
+        }
+        else{
+            this.setState({
+                lessonHtml: target
+            })
+        }
+        
     }
 
     cssChange = (ev) => {
@@ -163,6 +176,18 @@ export default class CreateLesson extends React.Component {
             }
     }
 
+    setTemplateFocus = () => {
+        this.setState({
+            lessonTemplateFocus: true
+        })
+    }
+
+    switchFocus = () => {
+        this.setState({
+            lessonTemplateFocus: false
+        })
+    }
+
     formSubmit = (ev) => {
         ev.preventDefault()
         console.log(this.state)
@@ -177,62 +202,62 @@ export default class CreateLesson extends React.Component {
                         <form id="createlessonform" onSubmit={this.formSubmit}>
                             <label>Lesson Directions</label>
                             <br />
-                            <textarea placeholder="Text displayed in the Lesson tab written in plain text or Markdown" value={this.state.lessonText} onChange={this.lessonTextChange}/>
+                            <textarea onFocus={this.switchFocus}  placeholder="Text displayed in the Lesson tab written in plain text or Markdown" value={this.state.lessonText} onChange={this.lessonTextChange}/>
                             <br />
                             <br />
                             <label>Lesson CSS template</label>
                             <br />
-                            <textarea placeholder="CSS template to be displayed in example box written in Markdown" value={this.state.lessonTemplate} onChange={this.lessonTemplateChange}/>
+                            <textarea onFocus={this.setTemplateFocus} placeholder="CSS template to be displayed in example box written in Markdown" value={this.state.lessonTemplate} onChange={this.lessonTemplateChange}/>
                             <br />
                             <br />
                             <label>Lesson HTML</label> 
                             <br />
-                            <textarea placeholder="Raw HTML to be rendered in the puzzle box (Don't forget id's or class names)" value={this.state.lessonHtml} onChange={this.lessonHtmlChange}/>
+                            <textarea onFocus={this.switchFocus} placeholder="Raw HTML to be rendered in the puzzle box (Don't forget id's or class names)" value={this.state.lessonHtml} onChange={this.lessonHtmlChange}/>
                             <br />
                             <br />
                             <label>Applied CSS</label>
                             <br />
-                            <textarea placeholder="CSS to be applied on start to the HTML written above" value={this.state.css} onChange={this.cssChange}/>
+                            <textarea onFocus={this.switchFocus} placeholder="CSS to be applied on start to the HTML written above" value={this.state.css} onChange={this.cssChange}/>
                             <br />
                             <br />
                             <label>Button 1 text</label>
                             <br />
-                            <input autoComplete="OFF" name="1" placeholder="Text to be displayed on Button 1" value={this.state.button1text} onChange={this.buttonTextChange}/>
+                            <input autoComplete="OFF" name="1" onFocus={this.switchFocus} placeholder="Text to be displayed on Button 1" value={this.state.button1text} onChange={this.buttonTextChange}/>
                             <br />
                             <br />
                             <label>Button 1 Action</label>
                             <br />
-                            <textarea name="1" placeholder="CSS to be applied when Button 1 is pressed (Don't foget to reference id's or class names from above)" value={this.state.button1css} onChange={this.buttonCssChange}/>
+                            <textarea name="1" onFocus={this.switchFocus} placeholder="CSS to be applied when Button 1 is pressed (Don't foget to reference id's or class names from above)" value={this.state.button1css} onChange={this.buttonCssChange}/>
                             <br />
                             <br />
                             <label>Button 2 text</label>
                             <br />
-                            <input autoComplete="OFF" name="2" placeholder="Text to be displayed on Button 2" value={this.state.button2text} onChange={this.buttonTextChange}/>
+                            <input autoComplete="OFF" onFocus={this.switchFocus} name="2" placeholder="Text to be displayed on Button 2" value={this.state.button2text} onChange={this.buttonTextChange}/>
                             <br />
                             <br />
                             <label>Button 2 Action</label>
                             <br />
-                            <textarea name="2" placeholder="CSS to be applied when Button 2 is pressed (Don't foget to reference id's or class names from above)" value={this.state.button2css} onChange={this.buttonCssChange} />
+                            <textarea onFocus={this.switchFocus} name="2" placeholder="CSS to be applied when Button 2 is pressed (Don't foget to reference id's or class names from above)" value={this.state.button2css} onChange={this.buttonCssChange} />
                             <br />
                             <br />
                             <label>Button 3 text</label>
                             <br />
-                            <input autoComplete="OFF" name="3" placeholder="Text to be displayed on Button 3" value={this.state.button3text} onChange={this.buttonTextChange}/>
+                            <input autoComplete="OFF" onFocus={this.switchFocus} name="3" placeholder="Text to be displayed on Button 3" value={this.state.button3text} onChange={this.buttonTextChange}/>
                             <br />
                             <br />
                             <label>Button 3 Action</label>
                             <br />
-                            <textarea name="3" placeholder="CSS to be applied when Button 3 is pressed (Don't foget to reference id's or class names from above)" value={this.state.button3css} onChange={this.buttonCssChange}/>
+                            <textarea name="3" onFocus={this.switchFocus} placeholder="CSS to be applied when Button 3 is pressed (Don't foget to reference id's or class names from above)" value={this.state.button3css} onChange={this.buttonCssChange}/>
                             <br />
                             <br />
                             <label>Button 4 text</label>
                             <br />
-                            <input autoComplete="OFF" name="4" placeholder="Text to be displayed on Button 4" value={this.state.button4text} onChange={this.buttonTextChange}/>
+                            <input autoComplete="OFF" onFocus={this.switchFocus} name="4" placeholder="Text to be displayed on Button 4" value={this.state.button4text} onChange={this.buttonTextChange}/>
                             <br />
                             <br />
                             <label>Button 4 Action</label>
                             <br />
-                            <textarea name="4" placeholder="CSS to be applied when Button 4 is pressed (Don't foget to reference id's or class names from above)" value={this.state.button4css} onChange={this.buttonCssChange}/>
+                            <textarea name="4" onFocus={this.switchFocus} placeholder="CSS to be applied when Button 4 is pressed (Don't foget to reference id's or class names from above)" value={this.state.button4css} onChange={this.buttonCssChange}/>
                             <br />
                             <br />
                             <input type="submit" value="Create Lesson" />
@@ -241,7 +266,7 @@ export default class CreateLesson extends React.Component {
                     <div id="livewrapper">
                         <div id="liveheader">Live Preview</div>
                         <div className="game" id="livepreview">
-                            <ReactMarkdown source={this.state.lessonHtml} escapeHtml={false}/>
+                            <ReactMarkdown source={this.state.lessonTemplateFocus ? this.state.lessonTemplate : this.state.lessonHtml} escapeHtml={false}/>
                         </div>
                     </div>
                     
