@@ -159,7 +159,6 @@ export default class CreateLesson extends React.Component {
         let targetButton = ev.target.name
         let sheet = window.document.styleSheets[0];
         if(this.state.buttonStyleAdded){
-            let sheet = window.document.styleSheets[0];
             sheet.deleteRule(sheet.cssRules.length-1)
             this.setState({buttonStyleAdded: false})
         }
@@ -191,6 +190,13 @@ export default class CreateLesson extends React.Component {
                 //timeout()
             }catch{}
         }
+        setTimeout(() => null, 0)
+        setTimeout(() => {
+            if(this.state.buttonStyleAdded){
+                sheet.deleteRule(sheet.cssRules.length-1)
+                this.setState({buttonStyleAdded: false})
+            }
+        }, 2000)
 
     }
 
