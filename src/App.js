@@ -37,7 +37,7 @@ export default class App extends React.Component{
           <Route exact path="/" component={WelcomeScreen} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/lesson" render={(props) => <Lesson {...props} lessons={this.state.lessons}/>} />
-          <Route path="/createlesson" component={CreateLesson} />
+          <Route path="/createlesson" render={(props) => <CreateLesson {...props} updateLessons={this.getLessons}/>} />
         </Router>
       </div>
     );
@@ -46,6 +46,10 @@ export default class App extends React.Component{
   componentDidMount = () => {
     if(this.state.lessons.length === 0){
       this.getLessons()}
+    if(this.props.location && this.props.location.state.update){
+      this.getLessons()
+      this.props.history.push(`lessons/${this.props.location.state.lessonId}`)
+    }
   }
 
 }

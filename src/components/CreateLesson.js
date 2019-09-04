@@ -1,6 +1,7 @@
 import React from 'react'
 import Navbar from './Navbar'
 import ReactMarkdown from 'react-markdown'
+import LessonCreated from './lessonCreationComponents/lessonCreated'
 
 export default class CreateLesson extends React.Component {
 
@@ -9,6 +10,7 @@ export default class CreateLesson extends React.Component {
         lessonHtml: "",
         lessonText: "",
         lessonTemplate: "",
+        lessonTitle: "",
         button1text: "",
         button1css: "",
         button2text: "",
@@ -21,6 +23,14 @@ export default class CreateLesson extends React.Component {
         stylesAdded: 0,
         lessonTemplateFocus: false,
         buttonStyleAdded: false,
+        lessonCreated: false,
+        lesson_number: 0
+    }
+
+    titleChange = (ev) => {
+        this.setState({
+            lessonTitle: ev.target.value
+        })
     }
 
     lessonTextChange = (ev) => {
@@ -214,16 +224,51 @@ export default class CreateLesson extends React.Component {
 
     formSubmit = (ev) => {
         ev.preventDefault()
-        console.log(this.state)
+        fetch("http://localhost:3000/api/lessons", {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json",
+                "Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6InJvaGl0In0.UMCC5rxzkEkVqtF4mdepBFoxlaC2k0ARcMx6HJIgjTg"
+            },
+            body: JSON.stringify({
+                template: this.state.lessonTemplate,
+                lesson: this.state.lessonText,
+                title: this.state.lessonTitle,
+                difficulty: 0,
+                html: this.state.lessonHtml,
+                css: this.state.css,
+                button_one_text: this.state.button1text,
+                button_two_text: this.state.button2text,
+                button_three_text: this.state.button3text,
+                button_four_text: this.state.button4text,
+                button_one_action_css: this.state.button1css,
+                button_two_action_css: this.state.button2css,
+                button_three_action_css: this.state.button3css,
+                button_four_action_css: this.state.button4css
+            })
+        }).then(res => res.json())
+        .then(data => {
+            this.setState({
+                lessonCreated: true,
+                lesson_number: data.lesson_number
+            })
+            this.props.updateLessons()
+        })
     }
 
     render(){
         return(
             <div>
                 <Navbar history={this.props.history}/>
+                {this.state.lessonCreated ? <LessonCreated lessonId={this.state.lesson_number} /> : 
                 <div className="formpagebody">
                     <div className="formwrapper">
                         <form id="createlessonform" onSubmit={this.formSubmit}>
+                            <label>Lesson Title</label> 
+                            <br />
+                            <input className="regularinput" id="titleinput" onFocus={this.switchFocus} placeholder="Title for the lesson" value={this.state.lessonTitle} onChange={this.titleChange} />
+                            <br />
+                            <br />
                             <label>Lesson Directions</label>
                             <br />
                             <textarea onFocus={this.switchFocus}  placeholder="Text displayed in the Lesson tab written in plain text or Markdown" value={this.state.lessonText} onChange={this.lessonTextChange}/>
@@ -294,13 +339,13 @@ export default class CreateLesson extends React.Component {
                                 <ReactMarkdown source={this.state.lessonTemplateFocus ? this.state.lessonTemplate : this.state.lessonHtml} escapeHtml={false}/>
                             </div>
                             <div id="testformbuttons">
-                                <button name="1" onClick={this.applyStyleTest}>Button 1</button><button  name="2" onClick={this.applyStyleTest}> Button 2</button>
-                                <button name="3" onClick={this.applyStyleTest}>Button 3</button><button name="4" onClick={this.applyStyleTest}>Button 4</button>
+                                <button name="1" onClick={this.applyStyleTest}>{this.state.button1text === "" ? "Button 1" : this.state.button1text}</button><button  name="2" onClick={this.applyStyleTest}>{this.state.button2text === "" ? "Button 2" : this.state.button2text}</button>
+                                <button name="3" onClick={this.applyStyleTest}>{this.state.button3text === "" ? "Button 3" : this.state.button3text}</button><button name="4" onClick={this.applyStyleTest}>{this.state.button4text === "" ? "Button 4" : this.state.button4text}</button>
                             </div>
                         </div>
                     </div>
-                    
                 </div>
+                }
             </div>
         )
     }

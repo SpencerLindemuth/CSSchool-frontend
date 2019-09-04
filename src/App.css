@@ -89,9 +89,10 @@ button:hover{
   margin-bottom: 10vh;
 }
 
-.App{
+html{
   background-color: #4D7186;
   height: 100%;
+  background-size: 100%;
 }
 
 .test{
@@ -187,6 +188,7 @@ button:hover{
 }
 
 .formpagebody{
+  margin-top: 2%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin-bottom: 10%;
@@ -214,6 +216,7 @@ button:hover{
   font-size: calc(12px + 2vmin);
   line-height: calc(15px + 2vmin);
   outline: none;
+  padding: 2%;
 }
 
 .formwrapper input{
@@ -224,9 +227,14 @@ button:hover{
   border: none;
   font-size: calc(12px + 2vmin);
   line-height: calc(20px + 2vmin);
-  min-width: 90%;
-  max-width: 90%;
+  min-width: 86%;
+  max-width: 86%;
   padding: 2%;
+}
+
+#titleinput.regularinput{
+  background-color: #2C363F;
+  border-radius: 0px;
 }
 
 #createlessonform{
@@ -236,6 +244,10 @@ button:hover{
 
 #livewrapper{
   margin-right: 15%;
+}
+
+#livewrapper .game{
+  height: 70vh;
 }
 
 #liveheader{
@@ -271,6 +283,28 @@ button:hover{
   grid-area: b;
   align-self: end;
 }
+
+#testformbuttons button{
+  width: fit-content;
+}
+
+#created{
+  color: white;
+  font-size: 2em;
+}
+
+#created a{
+  color: #F4A720
+}
+
+#created a:hover{
+  color: #DE981E;
+}
+
+#created a:visited{
+  color: gainsboro
+}
+
 @media only screen and (max-width: 1000px){
 
   #navbar{
@@ -305,6 +339,33 @@ button:hover{
   }
   #codeview{
     font-size: 100%;
+  }
+  .formpagebody{
+    margin-top: 2%;
+    display: grid;
+    grid-template-areas:
+    "a a"
+    "b b"
+  }
+
+  .formwrapper{
+    grid-area: b;
+    grid-column: 1/-1;
+    margin: 4%;
+  }
+
+  #livewrapper{
+    grid-column: 1/-1;
+    grid-area: a;
+    height: fit-content;
+    margin: 4%;
+  }
+
+  #livewrapper .game{
+    height: 40vh;
+  }
+  #livewrapper .game button{
+    width: fit-content;
   }
 }
 
