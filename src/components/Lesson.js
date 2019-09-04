@@ -11,6 +11,7 @@ export default class Lesson extends React.Component {
         lessonView: true,
         guessed: false,
         styleAdded: 0,
+        update: false,
     }
 
     applyCss = (css) => {

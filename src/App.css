@@ -187,6 +187,7 @@ button:hover{
 }
 
 .formpagebody{
+  margin-top: 2%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   margin-bottom: 10%;
@@ -214,6 +215,7 @@ button:hover{
   font-size: calc(12px + 2vmin);
   line-height: calc(15px + 2vmin);
   outline: none;
+  padding: 2%;
 }
 
 .formwrapper input{
@@ -224,9 +226,14 @@ button:hover{
   border: none;
   font-size: calc(12px + 2vmin);
   line-height: calc(20px + 2vmin);
-  min-width: 90%;
-  max-width: 90%;
+  min-width: 86%;
+  max-width: 86%;
   padding: 2%;
+}
+
+#titleinput.regularinput{
+  background-color: #2C363F;
+  border-radius: 0px;
 }
 
 #createlessonform{
