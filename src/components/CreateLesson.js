@@ -20,6 +20,7 @@ export default class CreateLesson extends React.Component {
         styleSheetLength: 0,
         stylesAdded: 0,
         lessonTemplateFocus: false,
+        buttonStyleAdded: false,
     }
 
     lessonTextChange = (ev) => {
@@ -101,28 +102,6 @@ export default class CreateLesson extends React.Component {
                 return {stylesAdded: prevState.stylesAdded + (j)}
             })
         }
-        //let parsedRule = rules.join("")
-        // if(this.state.stylesAdded !== 0){
-        //     let i = 0;
-        //     while(i < this.state.stylesAdded){
-        //         sheet.deleteRule(sheet.cssRules.length-1)
-        //         this.setState({stylesAdded: this.state.stylesAdded - 1})
-        //         i++
-        //     }
-        //     this.setState({stylesAdded: this.state.stylesAdded - i})
-        // }
-        // try{
-        //     for (let i = 0; i < parsedArray.length; i++) {
-        //         console.log(parsedRule)
-        //         sheet.insertRule(parsedRule, sheet.cssRules.length);
-        //         this.setState({
-        //             stylesAdded: [...this.state.stylesAdded, ...parsedRule]
-        //         })
-        //     }
-        // }
-        // catch(error){
-        //     console.log()
-        // }
       }
 
     buttonTextChange = (ev) => {
@@ -174,6 +153,45 @@ export default class CreateLesson extends React.Component {
                 })
                 break
             }
+    }
+
+    applyStyleTest = (ev) => {
+        let targetButton = ev.target.name
+        let sheet = window.document.styleSheets[0];
+        if(this.state.buttonStyleAdded){
+            let sheet = window.document.styleSheets[0];
+            sheet.deleteRule(sheet.cssRules.length-1)
+            this.setState({buttonStyleAdded: false})
+        }
+        if(targetButton === "1"){
+            try{
+                sheet.insertRule(this.state.button1css, sheet.cssRules.length)
+                this.setState({buttonStyleAdded: true})
+                //timeout()
+            }catch{}
+        }
+        else if(targetButton === "2"){
+            try{
+                sheet.insertRule(this.state.button2css, sheet.cssRules.length)
+                this.setState({buttonStyleAdded: true})
+                //timeout()
+            }catch{}
+        }
+        else if(targetButton === "3"){
+            try{
+                sheet.insertRule(this.state.button3css, sheet.cssRules.length)
+                this.setState({buttonStyleAdded: true})
+                //timeout()
+            }catch{}
+        }
+        else if(targetButton === "4"){
+            try{
+                sheet.insertRule(this.state.button4css, sheet.cssRules.length)
+                this.setState({buttonStyleAdded: true})
+                //timeout()
+            }catch{}
+        }
+
     }
 
     setTemplateFocus = () => {
@@ -267,6 +285,10 @@ export default class CreateLesson extends React.Component {
                         <div id="liveheader">Live Preview</div>
                         <div className="game" id="livepreview">
                             <ReactMarkdown source={this.state.lessonTemplateFocus ? this.state.lessonTemplate : this.state.lessonHtml} escapeHtml={false}/>
+                            <div id="testformbuttons">
+                                <button name="1" onClick={this.applyStyleTest}>Button 1</button><button  name="2" onClick={this.applyStyleTest}> Button 2</button>
+                                <button name="3" onClick={this.applyStyleTest}>Button 3</button><button name="4" onClick={this.applyStyleTest}>Button 4</button>
+                            </div>
                         </div>
                     </div>
                     
