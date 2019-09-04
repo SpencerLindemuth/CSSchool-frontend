@@ -256,9 +256,16 @@ button:hover{
   "b b b b b";
 }
 
-#livepreview p{
+#markdown{
   grid-area: a;
 }
+
+/* #livepreview p{
+  grid-area: a;
+}
+#livepreview span{
+  grid-area: a;
+} */
 
 #testformbuttons{
   grid-area: b;
