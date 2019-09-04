@@ -339,8 +339,8 @@ export default class CreateLesson extends React.Component {
                                 <ReactMarkdown source={this.state.lessonTemplateFocus ? this.state.lessonTemplate : this.state.lessonHtml} escapeHtml={false}/>
                             </div>
                             <div id="testformbuttons">
-                                <button name="1" onClick={this.applyStyleTest}>Button 1</button><button  name="2" onClick={this.applyStyleTest}> Button 2</button>
-                                <button name="3" onClick={this.applyStyleTest}>Button 3</button><button name="4" onClick={this.applyStyleTest}>Button 4</button>
+                                <button name="1" onClick={this.applyStyleTest}>{this.state.button1text === "" ? "Button 1" : this.state.button1text}</button><button  name="2" onClick={this.applyStyleTest}>{this.state.button2text === "" ? "Button 2" : this.state.button2text}</button>
+                                <button name="3" onClick={this.applyStyleTest}>{this.state.button3text === "" ? "Button 3" : this.state.button3text}</button><button name="4" onClick={this.applyStyleTest}>{this.state.button4text === "" ? "Button 4" : this.state.button4text}</button>
                             </div>
                         </div>
                     </div>

@@ -246,6 +246,10 @@ html{
   margin-right: 15%;
 }
 
+#livewrapper .game{
+  height: 70vh;
+}
+
 #liveheader{
   font-size: 2em;
   color: white;
@@ -278,6 +282,10 @@ html{
 #testformbuttons{
   grid-area: b;
   align-self: end;
+}
+
+#testformbuttons button{
+  width: fit-content;
 }
 
 #created{
@@ -331,6 +339,33 @@ html{
   }
   #codeview{
     font-size: 100%;
+  }
+  .formpagebody{
+    margin-top: 2%;
+    display: grid;
+    grid-template-areas:
+    "a a"
+    "b b"
+  }
+
+  .formwrapper{
+    grid-area: b;
+    grid-column: 1/-1;
+    margin: 4%;
+  }
+
+  #livewrapper{
+    grid-column: 1/-1;
+    grid-area: a;
+    height: fit-content;
+    margin: 4%;
+  }
+
+  #livewrapper .game{
+    height: 40vh;
+  }
+  #livewrapper .game button{
+    width: fit-content;
   }
 }
 
