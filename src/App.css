@@ -262,6 +262,7 @@ button:hover{
 
 #testformbuttons{
   grid-area: b;
+  align-self: end;
 }
 @media only screen and (max-width: 1000px){
 

@@ -220,7 +220,7 @@ export default class CreateLesson extends React.Component {
     render(){
         return(
             <div>
-                <Navbar />
+                <Navbar history={this.props.history}/>
                 <div className="formpagebody">
                     <div className="formwrapper">
                         <form id="createlessonform" onSubmit={this.formSubmit}>
