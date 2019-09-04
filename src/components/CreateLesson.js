@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown/with-html'
 import LessonCreated from './lessonCreationComponents/lessonCreated'
 
 export default class CreateLesson extends React.Component {

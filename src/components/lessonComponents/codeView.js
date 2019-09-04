@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown/with-html'
 
 export default class CodeView extends React.Component {
 
