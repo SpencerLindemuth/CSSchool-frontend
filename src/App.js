@@ -9,6 +9,7 @@ import { createBrowserHistory } from 'history';
 import Dashboard from './components/Dashboard'
 import WelcomeScreen from './components/WelcomeScreen'
 import Lesson from './components/Lesson'
+import CreateLesson from './components/CreateLesson'
 
 const LESSON_URL = "http://localhost:3000/api/lessons"
 export default class App extends React.Component{
@@ -36,6 +37,7 @@ export default class App extends React.Component{
           <Route exact path="/" component={WelcomeScreen} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/lesson" render={(props) => <Lesson {...props} lessons={this.state.lessons}/>} />
+          <Route path="/createlesson" component={CreateLesson} />
         </Router>
       </div>
     );

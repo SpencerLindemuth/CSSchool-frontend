@@ -91,7 +91,7 @@ button:hover{
 
 .App{
   background-color: #4D7186;
-  height: 100vh;
+  height: 100%;
 }
 
 .test{
@@ -186,6 +186,91 @@ button:hover{
   color: white;
 }
 
+.formpagebody{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 10%;
+}
+
+.formwrapper{
+  height: 90vh;
+  text-align: center;
+  margin-left: 15%;
+  overflow: scroll;
+}
+
+.formwrapper textarea{
+  background-color: #2C363F; 
+  color: white;
+  resize: none;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;
+  min-width: 90%;
+  max-width: 90%;
+  min-height: 100%;
+  height: 40vh;
+  border: none;
+  font-size: calc(12px + 2vmin);
+  line-height: calc(15px + 2vmin);
+  outline: none;
+}
+
+.formwrapper input{
+  background-color: #F4A720; 
+  border-radius: 8px;
+  color: white;
+  outline: none;
+  border: none;
+  font-size: calc(12px + 2vmin);
+  line-height: calc(20px + 2vmin);
+  min-width: 90%;
+  max-width: 90%;
+  padding: 2%;
+}
+
+#createlessonform{
+  font-size: 2em;
+  color: white;
+}
+
+#livewrapper{
+  margin-right: 15%;
+}
+
+#liveheader{
+  font-size: 2em;
+  color: white;
+}
+#livepreview{
+  color: white;
+  font-size: calc(12px + 2vmin);
+  height: 80vh;
+  overflow: scroll;
+  display: grid;
+  grid-template-areas:
+  "a a a a a"
+  "a a a a a"
+  "a a a a a"
+  "a a a a a"
+  "b b b b b";
+}
+
+#markdown{
+  grid-area: a;
+}
+
+/* #livepreview p{
+  grid-area: a;
+}
+#livepreview span{
+  grid-area: a;
+} */
+
+#testformbuttons{
+  grid-area: b;
+  align-self: end;
+}
 @media only screen and (max-width: 1000px){
 
   #navbar{
