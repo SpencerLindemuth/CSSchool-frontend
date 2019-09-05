@@ -139,7 +139,7 @@ export default class Lesson extends React.Component {
 
         return(
             <div>
-                <Navbar history={this.props.history}/>
+                <Navbar history={this.props.history} openModal={this.props.openModal}/>
                 <div id="pagenotfound">{
                     lesson ? null : <PageNotFound history={this.props.history}/>
                 }</div>

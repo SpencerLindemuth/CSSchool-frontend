@@ -15,7 +15,7 @@ export default class WelcomeScreen extends React.Component {
     render(){
         return(
             <div>
-                <Navbar history={this.props.history}/>
+                <Navbar history={this.props.history} openModal={this.props.openModal}/>
                 <div id="welcome-div">
                     <h1>Welcome to CSSchool!</h1>
                     <p>CSSchool is here to teach you the basic in's and out's of CSS styling.
