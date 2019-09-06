@@ -6,7 +6,6 @@ import LoginForm from './components/LoginForm'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from './components/Navbar'
 import { createBrowserHistory } from 'history';
-import Dashboard from './components/Dashboard'
 import WelcomeScreen from './components/WelcomeScreen'
 import Lesson from './components/Lesson'
 import CreateLesson from './components/CreateLesson'
@@ -20,7 +19,8 @@ export default class App extends React.Component{
 
   state={
     lessons: [],
-    modalStatus: "hidden"
+    modalStatus: "hidden",
+    loggedIn: false,
   }
 
   openModal = () => {
@@ -29,12 +29,12 @@ export default class App extends React.Component{
     })
   }
 
-  closeModal = (ev) => {
+  closeModal = (ev, formInput) => {
     let outer = document.getElementById("modalBackground")
     let closeButton = document.getElementById("modalclose")
-      if(ev.target === outer || ev.target === closeButton){
+    if(ev.target === outer || ev.target === closeButton || ev.which === 27 || ev.target === true){
       this.setState({
-        modalStatus: "hidden"
+        modalStatus: "hidden",
       })
     }
 }
@@ -49,15 +49,26 @@ export default class App extends React.Component{
     })
   })}
 
+  setLoginState = () => {
+    this.setState({
+      loggedIn: true
+    })
+  }
+
+  setLogoutState = () => {
+    this.setState({
+      loggedIn: false
+    })
+  }
+
   render(){
     return (
-      <div className="App">
-        <Modal switchClass={this.state.modalStatus} closeModal={this.closeModal}/>
+      <div className="App" onKeyDown={this.closeModal}>
+        <Modal switchClass={this.state.modalStatus} closeModal={this.closeModal} setLoginState={this.setLoginState}/>
         <Router>
-          <Route exact path="/" render={(props) => <WelcomeScreen {...props} openModal={this.openModal}/>} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route path="/lesson" render={(props) => <Lesson {...props} lessons={this.state.lessons} openModal={this.openModal}/>} />
-          <Route path="/createlesson" render={(props) => <CreateLesson {...props} updateLessons={this.getLessons} openModal={this.openModal}/>} />
+          <Route exact path="/" render={(props) => <WelcomeScreen {...props} openModal={this.openModal} setLoginState={this.setLoginState} setLogoutState={this.setLogoutState} loggedIn={this.state.loggedIn}/>} />
+          <Route path="/lesson" render={(props) => <Lesson {...props} lessons={this.state.lessons} openModal={this.openModal} setLoginState={this.setLoginState} setLogoutState={this.setLogoutState} loggedIn={this.state.loggedIn}/>} />
+          <Route path="/createlesson" render={(props) => <CreateLesson {...props} updateLessons={this.getLessons} openModal={this.openModal} setLoginState={this.setLoginState} setLogoutState={this.setLogoutState} loggedIn={this.state.loggedIn}/>} />
         </Router>
       </div>
     );
@@ -69,6 +80,11 @@ export default class App extends React.Component{
     if(this.props.location && this.props.location.state.update){
       this.getLessons()
       this.props.history.push(`lessons/${this.props.location.state.lessonId}`)
+    }
+    if(localStorage.jwt !== "null"){
+      this.setState({
+        loggedIn: true
+      })
     }
   }
 

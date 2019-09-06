@@ -32,8 +32,34 @@ export default class LoginForm extends React.Component {
 
     handleSubmit = (ev) => {
         ev.preventDefault()
-        this.setState({
-            errorMessage: "Sorry there was an error with your request"
+        fetch("http://localhost:3000/api/login", {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password
+            })
+        })
+        .then(res => res.ok ? res.json() : null)
+        .then(data => {
+            if(data === null){
+                this.setState({
+                    errorMessage: "Invalid Username or Password",
+                    password: ""
+                })
+            }
+            else{
+                this.setState({
+                    username: "",
+                    password: ""
+                })
+                localStorage.setItem("jwt", data.jwt)
+                localStorage.setItem("user", JSON.stringify(data.user))
+                this.props.setLoginState()
+                this.props.closeModal({target: true})
+            }
         })
     }
 
@@ -41,7 +67,7 @@ export default class LoginForm extends React.Component {
         return(
             <div>
                 <div id="errordiv">{this.state.errorMessage}</div>
-                <form className="loginForm" onSubmit={this.handleSubmit} spellcheck="false">
+                <form className="loginForm" onSubmit={this.handleSubmit} spellCheck="false">
                     <label id="id">{'#'}</label><label id="useraccountcss">{'useraccount'}</label><label id="brace">{' {'}</label>
                     <br />
                     <div id="usernamesdiv" className="loginformspan">username: <input id="usernameinput" value={this.state.username} onChange={this.handleUsernameChange}/>;</div>

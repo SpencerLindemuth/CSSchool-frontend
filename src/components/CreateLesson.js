@@ -259,7 +259,7 @@ export default class CreateLesson extends React.Component {
     render(){
         return(
             <div>
-                <Navbar history={this.props.history} openModal={this.props.openModal}/>
+                <Navbar history={this.props.history} openModal={this.props.openModal} setLoginState={this.props.setLoginState} setLogoutState={this.props.setLogoutState} loggedIn={this.props.loggedIn}/>
                 {this.state.lessonCreated ? <LessonCreated lessonId={this.state.lesson_number} /> : 
                 <div className="formpagebody">
                     <div className="formwrapper">

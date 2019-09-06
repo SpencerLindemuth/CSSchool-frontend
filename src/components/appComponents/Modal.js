@@ -8,7 +8,7 @@ export default class Modal extends React.Component {
             <div className={this.props.switchClass} id="modalBackground" onClick={this.props.closeModal}>
                 <div id="showModal" className="showModal">
                     <button id="modalclose" onClick={this.props.closeModal}>X</button>
-                    <LoginForm />
+                    <LoginForm closeModal={this.props.closeModal} setLoginState={this.props.setLoginState}/>
                 </div>
             </div>
         )
