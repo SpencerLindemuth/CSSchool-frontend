@@ -414,6 +414,11 @@ html{
   margin-left: 20%;
 }
 
+#loginSubmit:hover{
+  cursor: pointer;
+  background-color: #DE981E;
+}
+
 @media only screen and (max-width: 1000px){
 
   #navbar{

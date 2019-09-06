@@ -6,9 +6,9 @@ export default class LoginForm extends React.Component {
         username: "",
         password: "",
         errorMessage: "",
+        createUserFlag: false
     }
 
-    passwordField = document.getElementById("passwordinput")
 
     handleUsernameChange = (ev) => {
         let usernameField = document.getElementById("usernameinput")
@@ -25,9 +25,72 @@ export default class LoginForm extends React.Component {
     }
 
     handlePasswordChange = (ev) => {
+        let passwordField = document.getElementById("passwordinput")
+        this.setState({
+            password: ev.target.value
+        })
+        passwordField.style.borderBottomColor = null
+    }
+
+    handleCreateClick = () => {
+        this.setState({
+            createUserFlag: true
+        })
+    }
+
+    handleBackClick = () => {
+        this.setState({
+            createUserFlag: false
+        })
+    }
+
+    handleCreateSubmit = (ev) => {
+        ev.preventDefault()
+        if(this.state.username.length === 0){
+            let usernameField = document.getElementById("usernameinput")
             this.setState({
-                password: ev.target.value
+                errorMessage: "Username cannot be blank"
             })
+            usernameField.style.borderBottomColor = "#EF476F"
+        }
+        else if(this.state.password.length === 0){
+            let passwordField = document.getElementById("passwordinput")
+            this.setState({
+                errorMessage: "Password cannot be blank"
+            })
+            passwordField.style.borderBottomColor = "#EF476F"
+        }else{
+            fetch("http://localhost:3000/api/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json"
+                },
+                body: JSON.stringify({
+                    username: this.state.username,
+                    password: this.state.password
+                })
+            })
+            .then(res => res.ok ? res.json() : null)
+            .then(data => {
+                if(data === null){
+                    this.setState({
+                        errorMessage: "Unable to create account, please try again",
+                        password: ""
+                    })
+                }
+                else{
+                    this.setState({
+                        username: "",
+                        password: "",
+                        createUserFlag: false,
+                    })
+                    localStorage.setItem("jwt", data.jwt)
+                    localStorage.setItem("user", JSON.stringify(data.user))
+                    this.props.setLoginState()
+                    this.props.closeModal({target: true})
+                }
+            })
+        }
     }
 
     handleSubmit = (ev) => {
@@ -74,7 +137,10 @@ export default class LoginForm extends React.Component {
                     <div id="passworddiv" className="loginformspan">password: <input id="passwordinput" value={this.state.password} onChange={this.handlePasswordChange} type="password"/>;</div>
                     <span id="closingcurlyspan">}</span>
                     <br />
-                    <input id="loginSubmit" type="submit" />
+                    {!this.state.createUserFlag ? <input id="loginSubmit" type="submit" value={"Login"} /> : null }
+                    {!this.state.createUserFlag ? <button type="button" onClick={this.handleCreateClick}>Create Account</button> : null}
+                    {this.state.createUserFlag ? <button id="loginSubmit" onClick={this.handleCreateSubmit}>Create</button> : null}
+                    {this.state.createUserFlag ? <button type="button" onClick={this.handleBackClick}>Back</button> : null}
                 </form>
             </div>
         )
