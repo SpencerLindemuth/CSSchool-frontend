@@ -1,6 +1,6 @@
 import React from 'react'
 import Navbar from './Navbar'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown/with-html'
 import LessonCreated from './lessonCreationComponents/lessonCreated'
 
 export default class CreateLesson extends React.Component {
@@ -259,7 +259,7 @@ export default class CreateLesson extends React.Component {
     render(){
         return(
             <div>
-                <Navbar history={this.props.history}/>
+                <Navbar history={this.props.history} openModal={this.props.openModal} setLoginState={this.props.setLoginState} setLogoutState={this.props.setLogoutState} loggedIn={this.props.loggedIn}/>
                 {this.state.lessonCreated ? <LessonCreated lessonId={this.state.lesson_number} /> : 
                 <div className="formpagebody">
                     <div className="formwrapper">
