@@ -78,14 +78,11 @@ export default class App extends React.Component{
     if(this.state.lessons.length === 0){
       this.getLessons()}
     if(this.props.location && this.props.location.state.update){
-      this.getLessons()
-      this.props.history.push(`lessons/${this.props.location.state.lessonId}`)
-    }
-    if(localStorage.jwt !== "null"){
+      this.getLessons()}
+    if(localStorage.getItem("jwt") !== "null")
       this.setState({
         loggedIn: true
-      })
-    }
+    })
   }
 
 }

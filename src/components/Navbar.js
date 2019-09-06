@@ -22,6 +22,7 @@ export default class Navbar extends React.Component {
             <div id="navbar">
                 <img id="logo" src={logo} onClick={this.handleLogoPress}></img>
                 <span id="userspan">
+                {console.log("loggedIn ", this.props.loggedIn)}
                 {
                     this.props.loggedIn ? <button onClick={this.logout}>Logout</button> : <button onClick={this.props.openModal}>Login</button>
                 }

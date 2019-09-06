@@ -46,6 +46,9 @@ export default class Lesson extends React.Component {
 
     handleNextClick = () => {
         if(this.state.guessed){
+            if(this.props.loggedIn){
+                this.saveProgress()
+            }
             this.removeStyles()
             this.props.history.push(`/lesson/${this.pathName() + 1}`)
             this.setState({
@@ -54,6 +57,20 @@ export default class Lesson extends React.Component {
             })
         }
 
+    }
+
+    saveProgress = () => {
+        fetch('http://localhost:3000/api/users/save', {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json",
+                "Authorization" : `Bearer ${localStorage.jwt}`
+            },
+            body: JSON.stringify({
+                username: JSON.parse(localStorage.user).username,
+                lesson: this.pathName()
+            })
+        }).then(res => console.log(res))
     }
 
     getComponent = () => {
