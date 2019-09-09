@@ -271,22 +271,22 @@ export default class CreateLesson extends React.Component {
                             <br />
                             <label>Lesson Directions</label>
                             <br />
-                            <textarea onFocus={this.switchFocus}  placeholder="Text displayed in the Lesson tab written in plain text or Markdown" value={this.state.lessonText} onChange={this.lessonTextChange}/>
+                            <textarea onFocus={this.switchFocus}  placeholder="Text displayed in the Lesson tab written in Markdown and HTML" value={this.state.lessonText} onChange={this.lessonTextChange}/>
                             <br />
                             <br />
                             <label>Lesson CSS template</label>
                             <br />
-                            <textarea onFocus={this.setTemplateFocus} placeholder="CSS template to be displayed in example box written in Markdown" value={this.state.lessonTemplate} onChange={this.lessonTemplateChange}/>
+                            <textarea onFocus={this.setTemplateFocus} placeholder="CSS rules to be displayed in example box written in Markdown and HTML" value={this.state.lessonTemplate} onChange={this.lessonTemplateChange}/>
                             <br />
                             <br />
                             <label>Lesson HTML</label> 
                             <br />
-                            <textarea onFocus={this.switchFocus} placeholder="Raw HTML to be rendered in the puzzle box (Don't forget id's or class names)" value={this.state.lessonHtml} onChange={this.lessonHtmlChange}/>
+                            <textarea onFocus={this.switchFocus} placeholder="Real HTML to be rendered in the puzzle box (Don't forget id's or class names)" value={this.state.lessonHtml} onChange={this.lessonHtmlChange}/>
                             <br />
                             <br />
                             <label>Applied CSS</label>
                             <br />
-                            <textarea onFocus={this.switchFocus} placeholder="CSS to be applied on start to the HTML written above" value={this.state.css} onChange={this.cssChange}/>
+                            <textarea onFocus={this.switchFocus} placeholder="CSS to be applied on initialization to the HTML elements above" value={this.state.css} onChange={this.cssChange}/>
                             <br />
                             <br />
                             <label>Button 1 text</label>
