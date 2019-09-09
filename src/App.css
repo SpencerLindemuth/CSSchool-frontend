@@ -227,10 +227,16 @@ html{
   min-height: 100%;
   height: 40vh;
   border: none;
+  border-radius: 6px;
   font-size: calc(12px + 2vmin);
   line-height: calc(15px + 2vmin);
   outline: none;
   padding: 2%;
+}
+
+.formwrapper label{
+  display: inline-block;
+  margin-bottom: 2%;
 }
 
 .formwrapper input{
@@ -238,6 +244,7 @@ html{
   border-radius: 8px;
   outline: none;
   border: none;
+  border-radius: 6px;
   font-size: calc(12px + 2vmin);
   line-height: calc(20px + 2vmin);
   min-width: 86%;
@@ -247,7 +254,7 @@ html{
 
 #titleinput.regularinput{
   background-color: #2C363F;
-  border-radius: 0px;
+  border-radius: 6px;
 }
 
 #createlessonform{
