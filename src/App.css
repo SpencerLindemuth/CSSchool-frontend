@@ -24,6 +24,15 @@ button:hover{
   cursor: pointer;
 }
 
+#lessoncreatesubmit{
+  background-color: #2087F5;
+  cursor: pointer;
+}
+
+#lessoncreatesubmit:hover{
+  background-color: #1077E5;
+}
+
 #lessonbutton{
   background-color: #2087F5;
 }
@@ -101,9 +110,11 @@ button:hover{
 }
 
 html{
-  background-color: #4D7186;
+  background-image: linear-gradient(#284253, #4D7186);
   height: 100%;
   background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .test{
@@ -202,6 +213,11 @@ html{
 #pagenotfound{
 }
 
+#createlessonh1{
+  font-size: 3em;
+  color: white;
+}
+
 .formpagebody{
   margin-top: 2%;
   display: grid;
@@ -266,14 +282,17 @@ html{
 }
 
 #livewrapper .game{
-  height: 70vh;
+  height: 60vh;
 }
 
 #liveheader{
   font-size: 2em;
+  margin-bottom: 2%;
+  display: inline-block;
 }
 #livepreview{
   font-size: calc(12px + 2vmin);
+  border-radius: 6px;
   height: 80vh;
   overflow: scroll;
   display: grid;
@@ -482,13 +501,21 @@ html{
     margin-right: 5%;
     margin-bottom: 5%;
   }
+
   #answerbuttonspans button{
     width: 48%;
     font-size: 70%;
   }
+
   #codeview{
     font-size: 100%;
   }
+
+  #createlessonh1{
+    font-size: 2.5em;
+    margin-bottom: 2%;
+  }
+
   .formpagebody{
     margin-top: 2%;
     display: grid;
@@ -501,6 +528,7 @@ html{
     grid-area: b;
     grid-column: 1/-1;
     margin: 4%;
+    height: 40vh;
   }
 
   #livewrapper{
