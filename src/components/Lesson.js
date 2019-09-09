@@ -60,7 +60,7 @@ export default class Lesson extends React.Component {
     }
 
     saveProgress = () => {
-        fetch('http://localhost:3000/api/users/save', {
+        fetch('http://10.137.5.116:3000/api/users/save', {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
@@ -160,16 +160,16 @@ export default class Lesson extends React.Component {
                 <div id="pagenotfound">{
                     lesson ? null : <PageNotFound history={this.props.history}/>
                 }</div>
-                {lesson ? <span className="actionbar">
+                {lesson ? <div className="actionbar">
                     <span className="leftbuttons">
                         <button onClick={this.prevButton}>&#8592; Prev</button>
                         <button id="lessonbutton" onClick={this.handleLessonClick}>{this.state.lessonView ? "Code": "Lesson"}</button>
                     </span>
                     <span className="rightbuttons">
                         <button onClick={this.resetButton}>Reset</button>
-                        <button>Save</button>
+                        <button onClick={() => this.props.history.push("/createlesson")}>Create</button>
                     </span>
-                    </span> : null }
+                    </div> : null }
                 <div className="helperdiv">
                     <div id="gamescreen">
                         {lesson ? <CodeView code={lesson.template} /> : null}

@@ -60,7 +60,7 @@ export default class LoginForm extends React.Component {
             })
             passwordField.style.borderBottomColor = "#EF476F"
         }else{
-            fetch("http://localhost:3000/api/users", {
+            fetch("http://10.137.5.116:3000/api/users", {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json"
@@ -95,7 +95,7 @@ export default class LoginForm extends React.Component {
 
     handleSubmit = (ev) => {
         ev.preventDefault()
-        fetch("http://localhost:3000/api/login", {
+        fetch("http://10.137.5.116:3000/api/login", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json"
@@ -138,7 +138,7 @@ export default class LoginForm extends React.Component {
                     <span id="closingcurlyspan">}</span>
                     <br />
                     {!this.state.createUserFlag ? <input id="loginSubmit" type="submit" value={"Login"} /> : null }
-                    {!this.state.createUserFlag ? <button type="button" onClick={this.handleCreateClick}>Create Account</button> : null}
+                    {!this.state.createUserFlag ? <button type="button" id="createAccountButton" onClick={this.handleCreateClick}>Create Account</button> : null}
                     {this.state.createUserFlag ? <button id="loginSubmit" onClick={this.handleCreateSubmit}>Create</button> : null}
                     {this.state.createUserFlag ? <button type="button" onClick={this.handleBackClick}>Back</button> : null}
                 </form>

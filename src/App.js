@@ -12,7 +12,7 @@ import CreateLesson from './components/CreateLesson'
 import Modal from './components/appComponents/Modal'
 
 
-const LESSON_URL = "http://localhost:3000/api/lessons"
+const LESSON_URL = "http://10.137.5.116:3000/api/lessons"
 export default class App extends React.Component{
 
 
