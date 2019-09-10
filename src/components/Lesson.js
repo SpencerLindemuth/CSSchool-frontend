@@ -70,7 +70,7 @@ export default class Lesson extends React.Component {
                 username: JSON.parse(localStorage.user).username,
                 lesson: this.pathName()
             })
-        }).then(res => console.log(res))
+        })
     }
 
     getComponent = () => {
@@ -95,7 +95,6 @@ export default class Lesson extends React.Component {
             })
         }
         let target = ev.target
-        console.log(this.findLesson()[`${target.name}_action_css`])
         setTimeout(() => {
         this.applyCss(this.findLesson()[`${target.name}_action_css`])
         },0)
@@ -143,10 +142,6 @@ export default class Lesson extends React.Component {
         else{
             return lesson[0]
         }
-        // console.log("lesson", this.props.lessons)
-        // this.setState({
-        //     lesson: lesson
-        // })
     }
 
     render(){

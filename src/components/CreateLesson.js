@@ -53,7 +53,6 @@ export default class CreateLesson extends React.Component {
             this.setState({
                 lessonHtml: sanitized
             })
-            console.log("SCRIPTER NO SCRIPTING")
         }
         else{
             this.setState({
@@ -77,14 +76,12 @@ export default class CreateLesson extends React.Component {
         let parsedString = this.state.css.replace(/\s/g, "")
         let parsedArray = parsedString.split("")
         let index = parsedArray.indexOf("}")
-        console.log("initial", this.state.stylesAdded)
         let i = 0
         let k = 0
         while(i < this.state.stylesAdded){
             sheet.deleteRule(sheet.cssRules.length-1)
             i++
         }
-        console.log("how many times i'm running", i)
         this.setState({stylesAdded: 0})
         if(index === -1){
             return null
@@ -96,7 +93,6 @@ export default class CreateLesson extends React.Component {
             }
             else{return null}
             let completeRulesArray = rulesArray.map(element => element + "}")
-            console.log(completeRulesArray)
             let j = 0
             for(let i = 0; i < completeRulesArray.length; i++){
                 if(completeRulesArray[i] !== "}")
@@ -106,8 +102,6 @@ export default class CreateLesson extends React.Component {
                 }catch(error){
                 }
             }
-            console.log("IVE INSERTED THIS MANY RULES: ", j)
-            console.log("but my sheet is only ", sheet.cssRules.length, " enteries long...")
             this.setState((prevState) =>  {
                 return {stylesAdded: prevState.stylesAdded + (j)}
             })
