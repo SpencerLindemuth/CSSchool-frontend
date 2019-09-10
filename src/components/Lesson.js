@@ -46,7 +46,7 @@ export default class Lesson extends React.Component {
 
     handleNextClick = () => {
         if(this.state.guessed){
-            if(this.props.loggedIn && localStorage.user && localStorage.user.username && localStorage.user.username.length > 0){
+            if(this.props.loggedIn && localStorage.user && JSON.parse(localStorage.user).username && JSON.parse(localStorage.user).username.length > 0){
                 this.saveProgress()
             }
             this.removeStyles()
@@ -60,7 +60,6 @@ export default class Lesson extends React.Component {
     }
 
     saveProgress = () => {
-        console.log(localStorage.user)
         fetch('https://csschool-api.herokuapp.com/api/users/save', {
             method: "POST",
             headers: {

@@ -43,7 +43,6 @@ export default class App extends React.Component{
     fetch(LESSON_URL)
     .then(res => res.json())
     .then(data => {
-      console.log("fetched")
       this.setState({
       lessons: [...data]
     })

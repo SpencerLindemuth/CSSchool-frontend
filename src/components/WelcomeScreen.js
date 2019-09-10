@@ -24,7 +24,10 @@ export default class WelcomeScreen extends React.Component {
             }
           })
           .then(res => res.ok ? res.json() : null)
-          .then(data => data !== null ? this.props.history.push(`lesson/${data.progress.lesson_number}`) : this.props.history.push("lesson/1"))
+          .then(data => {
+              console.log(data)
+              data !== null ? this.props.history.push(`lesson/${data.progress.lesson_number + 1}`) : this.props.history.push("lesson/1")
+          })
         }
 
     render(){
