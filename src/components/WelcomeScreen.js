@@ -3,6 +3,9 @@ import Navbar from './Navbar';
 
 export default class WelcomeScreen extends React.Component {
 
+    getProgress = () => {
+      }
+
     handleClick = () => {
         if(localStorage.getItem("lastlesson")){
             this.props.history.push(`/lesson/${localStorage.getItem("lastlesson")}`)
@@ -11,6 +14,18 @@ export default class WelcomeScreen extends React.Component {
             this.props.history.push("lesson/1")
         }
     }
+
+    handleContinueClick = () => {
+        return fetch("http://10.137.5.116:3000/api/users/progress", {
+            method: "GET",
+            headers: {
+              "Content-Type" : "application/json",
+              "Authorization" : `Bearer ${localStorage.jwt}`
+            }
+          })
+          .then(res => res.ok ? res.json() : null)
+          .then(data => data !== null ? this.props.history.push(`lesson/${data.progress.lesson_number}`) : this.props.history.push("lesson/1"))
+        }
 
     render(){
         return(
@@ -24,7 +39,7 @@ export default class WelcomeScreen extends React.Component {
                     </p>
                     <button onClick={this.handleClick}>Get Started</button>
                     {
-                        localStorage.getItem("jwt") !== "null" ? <button >Continue</button> : null
+                        this.props.loggedIn ? <button onClick={this.handleContinueClick}>Continue</button> : null
                     }
                 </div>
             </div>

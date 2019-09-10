@@ -24,6 +24,15 @@ button:hover{
   cursor: pointer;
 }
 
+#lessoncreatesubmit{
+  background-color: #2087F5;
+  cursor: pointer;
+}
+
+#lessoncreatesubmit:hover{
+  background-color: #1077E5;
+}
+
 #lessonbutton{
   background-color: #2087F5;
 }
@@ -101,9 +110,11 @@ button:hover{
 }
 
 html{
-  background-color: #4D7186;
+  background-image: linear-gradient(#284253, #4D7186);
   height: 100%;
   background-size: 100%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .test{
@@ -202,6 +213,11 @@ html{
 #pagenotfound{
 }
 
+#createlessonh1{
+  font-size: 3em;
+  color: white;
+}
+
 .formpagebody{
   margin-top: 2%;
   display: grid;
@@ -227,10 +243,16 @@ html{
   min-height: 100%;
   height: 40vh;
   border: none;
+  border-radius: 6px;
   font-size: calc(12px + 2vmin);
   line-height: calc(15px + 2vmin);
   outline: none;
   padding: 2%;
+}
+
+.formwrapper label{
+  display: inline-block;
+  margin-bottom: 2%;
 }
 
 .formwrapper input{
@@ -238,6 +260,7 @@ html{
   border-radius: 8px;
   outline: none;
   border: none;
+  border-radius: 6px;
   font-size: calc(12px + 2vmin);
   line-height: calc(20px + 2vmin);
   min-width: 86%;
@@ -247,7 +270,7 @@ html{
 
 #titleinput.regularinput{
   background-color: #2C363F;
-  border-radius: 0px;
+  border-radius: 6px;
 }
 
 #createlessonform{
@@ -259,14 +282,17 @@ html{
 }
 
 #livewrapper .game{
-  height: 70vh;
+  height: 60vh;
 }
 
 #liveheader{
   font-size: 2em;
+  margin-bottom: 2%;
+  display: inline-block;
 }
 #livepreview{
   font-size: calc(12px + 2vmin);
+  border-radius: 6px;
   height: 80vh;
   overflow: scroll;
   display: grid;
@@ -338,6 +364,7 @@ html{
   height: 60vh;
   background-image: url('./images/loginbackground.png');
   background-repeat: no-repeat;
+  text-align: left;
 }
 
 .hidden{
@@ -351,24 +378,26 @@ html{
   height: auto;
 }
 
+#loginwrapper{
+  margin-left: 135px;
+}
+
 #errordiv{
   color: #EF476F;
-  margin-top: 10%;
+  height: 4vh;
+  margin-top: 75px;
+  font-size: 1.25em;
 }
 
 .loginForm{
   font-size: 2em;
-  position: fixed;
-  width: 80%;
-  height: auto;
-  top:47%;
-  left:42%;
-  transform: translate(-50%,-50%);
+  width: 100%;
+  margin-top: 0;
 }
 
 .loginformspan{
-  margin-left: 46%;
   width: fit-content;
+  margin-left: 100px;
 }
 
 .loginForm input{
@@ -399,7 +428,6 @@ html{
 }
 
 #closingcurlyspan{
-  margin-left: -15%;
 }
 
 #loginSubmit{
@@ -411,21 +439,35 @@ html{
   background-color: #F4A720;
   color: #EAF6FB;
   margin-top: 1%;
-  margin-left: 20%;
+}
+
+#loginSubmit:hover{
+  cursor: pointer;
+  background-color: #DE981E;
 }
 
 @media only screen and (max-width: 1000px){
 
   #navbar{
-    text-align: center;
+    text-align: left;
+  }
+
+  #navbar img{
+    max-width: 70vw;
+    margin-top: 1vh;
   }
   .actionbar button{
+    font-size: 70%;
     margin-top: 4%;
     width: calc(20vw + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
     height: calc(5vh + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+    }
+
+  .actionbar {
+    height: fit-content;
   }
   .actionbar .leftbuttons {
-    float: none;;
+    float: none;
     width: 45vw;
   }
   
@@ -435,20 +477,46 @@ html{
   }
 
   #gamescreen{
-    height: 50vh;
+    width: 90vw;
+    height: 55vh;
+    display: block;
+    margin-right: 5vw;
+    margin-left: 5vw;
+  }
+
+  .game{
+    margin-top: 4%;
+    width: 100%;
+    height: 48%;
+    background-color: #2C363F;
+  }
+
+  #lessonview{
+    font-size: .75em;
   }
 
   #answerbuttonspans{
-    position: absolute;
-    bottom: 0;
+    margin-top: 1%;
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
     margin-bottom: 5%;
   }
+
   #answerbuttonspans button{
     width: 48%;
+    font-size: 70%;
   }
+
   #codeview{
     font-size: 100%;
   }
+
+  #createlessonh1{
+    font-size: 2.5em;
+    margin-bottom: 2%;
+  }
+
   .formpagebody{
     margin-top: 2%;
     display: grid;
@@ -461,6 +529,7 @@ html{
     grid-area: b;
     grid-column: 1/-1;
     margin: 4%;
+    height: 40vh;
   }
 
   #livewrapper{
@@ -476,20 +545,54 @@ html{
   #livewrapper .game button{
     width: fit-content;
   }
+
+  #userspan button{
+    width: 25vw;
+    margin-top: 2vh;
+  }
+
+  .showModal{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    height: 60vh;
+  }
+
+  #loginwrapper{
+    margin-left: 100px;
+    font-size: .75em;
+  }
+
+  #errordiv{
+  }
+
+  .loginForm{
+    font-size: 1.5em;
+  }
+
+  .loginformspan{
+    margin-left: 15%;
+  }
+
+  #closincurlyspan{
+  }
+
+  #loginSubmit{
+    margin-top: 4%;
+    margin-left: 0;
+  }
+
+  #createAccountButton{
+    margin-left: 0;
+  }
+
+  #backbutton{
+    margin-left: 0;
+    margin-top: 0;
+  }
+
 }
 
 @media only screen and (max-width: 800px){
-  #gamescreen{
-    width: 90vw;
-    height: 30vh;
-    display: block;
-    margin: auto;
-  }
-
-  .game{
-    margin-top: 4%;
-    width: 98%;
-    height: 98%;
-    background-color: #2C363F;
-  }
+  
 }

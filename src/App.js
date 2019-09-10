@@ -12,7 +12,7 @@ import CreateLesson from './components/CreateLesson'
 import Modal from './components/appComponents/Modal'
 
 
-const LESSON_URL = "http://localhost:3000/api/lessons"
+const LESSON_URL = "http://10.137.5.116:3000/api/lessons"
 export default class App extends React.Component{
 
 
@@ -78,14 +78,11 @@ export default class App extends React.Component{
     if(this.state.lessons.length === 0){
       this.getLessons()}
     if(this.props.location && this.props.location.state.update){
-      this.getLessons()
-      this.props.history.push(`lessons/${this.props.location.state.lessonId}`)
-    }
-    if(localStorage.jwt !== "null"){
+      this.getLessons()}
+    if(localStorage.getItem("jwt") !== "null")
       this.setState({
         loggedIn: true
-      })
-    }
+    })
   }
 
 }
