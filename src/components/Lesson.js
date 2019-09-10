@@ -12,6 +12,7 @@ export default class Lesson extends React.Component {
         guessed: false,
         styleAdded: 0,
         update: false,
+        initialStyle: 0,
     }
 
     applyCss = (css) => {
@@ -78,7 +79,7 @@ export default class Lesson extends React.Component {
            return  <LessonView lesson={this.findLesson().lesson} title={this.findLesson().title}/>
         }
         else{
-           return <ActionView html={this.findLesson().html} css={this.findLesson().css} handleNextClick={this.handleNextClick}/>
+           return <ActionView html={this.findLesson().html} css={this.findLesson().css} handleNextClick={this.handleNextClick} setInitialStyles={this.setInitialStyles} removeInitialStyles={this.removeInitialStyles}/>
         }
     }
 
@@ -121,6 +122,22 @@ export default class Lesson extends React.Component {
         }
     }
 
+    setInitialStyles = (styles) => {
+        this.setState({
+            initialStyle: styles
+        })
+    }
+
+    removeInitialStyles = () => {
+        let sheet = window.document.styleSheets[0];
+        for (let i = 0; i < this.state.initialStyle; i++){
+            window.document.styleSheets[0].removeRule(window.document.styleSheets[0].cssRules.length - 1)
+        }
+        this.setState({
+            initialStyle: 0
+        })
+    }
+
     removeStyles = () => {
         let sheet = window.document.styleSheets[0];
         for (let i = 0; i < this.state.styleAdded; i++){
@@ -133,11 +150,12 @@ export default class Lesson extends React.Component {
 
     removeFinalStyle = () => {
         let sheet = window.document.styleSheets[0];
-        for (let i = 0; i < this.state.styleAdded + 1; i++){
+        for (let i = 0; i < (this.state.styleAdded + this.state.initialStyle); i++){
             window.document.styleSheets[0].removeRule(window.document.styleSheets[0].cssRules.length - 1)
         }
         this.setState({
-            styleAdded: 0
+            styleAdded: 0,
+            initialStyle: 0
         })
     }
 

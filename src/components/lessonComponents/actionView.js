@@ -9,13 +9,15 @@ export default class ActionView extends React.Component {
         let sheet = window.document.styleSheets[0];
         let parsedArray = css.split("")
         try{
+            let j = 0
             for (let i = 0; i < parsedArray.length; i++) {
               let index = parsedArray.indexOf("}")
               let rule = parsedArray.splice(0, index+1)
               let parsedRule = rule.join("")
               sheet.insertRule(parsedRule, sheet.cssRules.length);
-    
+              j++
             }
+            this.props.setInitialStyles(j)
           }
           catch(error){
             console.log(error)
@@ -40,6 +42,7 @@ export default class ActionView extends React.Component {
     }
 
     componentDidMount = () => {
+        this.props.removeInitialStyles()
         this.applyCss()
         this.getNextLevelButton()
     }
