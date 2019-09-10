@@ -51,6 +51,10 @@ button:hover{
   text-align: center;
 }
 
+#restart{
+  width: fit-content;
+}
+
 #logo:hover{
   cursor: pointer;
 }
