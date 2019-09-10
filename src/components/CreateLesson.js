@@ -77,7 +77,6 @@ export default class CreateLesson extends React.Component {
         let parsedArray = parsedString.split("")
         let index = parsedArray.indexOf("}")
         let i = 0
-        let k = 0
         while(i < this.state.stylesAdded){
             sheet.deleteRule(sheet.cssRules.length-1)
             i++
@@ -130,6 +129,8 @@ export default class CreateLesson extends React.Component {
                     button4text: ev.target.value
                 })
                 break
+            default:
+                return null
             }
         }
 
@@ -156,6 +157,8 @@ export default class CreateLesson extends React.Component {
                     button4css: ev.target.value
                 })
                 break
+            default: 
+                return null
             }
     }
 

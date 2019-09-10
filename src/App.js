@@ -1,11 +1,6 @@
 import React from 'react';
-import logo from './logo.svg';
 import stylesheet from './App.css';
-import ReactMarkdown from 'react-markdown'
-import LoginForm from './components/LoginForm'
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Navbar from './components/Navbar'
-import { createBrowserHistory } from 'history';
 import WelcomeScreen from './components/WelcomeScreen'
 import Lesson from './components/Lesson'
 import CreateLesson from './components/CreateLesson'
