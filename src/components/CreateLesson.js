@@ -277,7 +277,7 @@ export default class CreateLesson extends React.Component {
                                 <br />
                                 <label>Lesson HTML</label> 
                                 <br />
-                                <textarea onFocus={this.switchFocus} placeholder="Real HTML to be rendered in the puzzle box (Don't forget id's or class names)" value={this.state.lessonHtml} onChange={this.lessonHtmlChange}/>
+                                <textarea onFocus={this.switchFocus} placeholder="Real HTML to be rendered in the puzzle box. Render a button with id='nextlevelbutton' to have access to lesson completion actions. (Don't forget id's or class names for other elements as well)" value={this.state.lessonHtml} onChange={this.lessonHtmlChange}/>
                                 <br />
                                 <br />
                                 <label>Applied CSS</label>
