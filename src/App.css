@@ -364,6 +364,7 @@ html{
   height: 60vh;
   background-image: url('./images/loginbackground.png');
   background-repeat: no-repeat;
+  text-align: left;
 }
 
 .hidden{
@@ -377,24 +378,26 @@ html{
   height: auto;
 }
 
+#loginwrapper{
+  margin-left: 135px;
+}
+
 #errordiv{
   color: #EF476F;
-  margin-top: 10%;
+  height: 4vh;
+  margin-top: 75px;
+  font-size: 1.25em;
 }
 
 .loginForm{
   font-size: 2em;
-  position: fixed;
-  width: 80%;
-  height: auto;
-  top:47%;
-  left:42%;
-  transform: translate(-50%,-50%);
+  width: 100%;
+  margin-top: 0;
 }
 
 .loginformspan{
-  margin-left: 46%;
   width: fit-content;
+  margin-left: 100px;
 }
 
 .loginForm input{
@@ -425,7 +428,6 @@ html{
 }
 
 #closingcurlyspan{
-  margin-left: -15%;
 }
 
 #loginSubmit{
@@ -437,7 +439,6 @@ html{
   background-color: #F4A720;
   color: #EAF6FB;
   margin-top: 1%;
-  margin-left: 20%;
 }
 
 #loginSubmit:hover{
@@ -554,28 +555,40 @@ html{
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
+    height: 60vh;
+  }
+
+  #loginwrapper{
+    margin-left: 100px;
+    font-size: .75em;
+  }
+
+  #errordiv{
   }
 
   .loginForm{
-    top: 50%;
-    left: 52%;
     font-size: 1.5em;
   }
 
   .loginformspan{
-    margin-left: 35%;
+    margin-left: 15%;
   }
 
   #closincurlyspan{
-    margin-left: -40%;
   }
 
   #loginSubmit{
     margin-top: 4%;
+    margin-left: 0;
   }
 
   #createAccountButton{
-    margin-left: 20%;
+    margin-left: 0;
+  }
+
+  #backbutton{
+    margin-left: 0;
+    margin-top: 0;
   }
 
 }

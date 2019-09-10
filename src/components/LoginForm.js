@@ -128,7 +128,7 @@ export default class LoginForm extends React.Component {
 
     render(){
         return(
-            <div>
+            <div id="loginwrapper">
                 <div id="errordiv">{this.state.errorMessage}</div>
                 <form className="loginForm" onSubmit={this.handleSubmit} spellCheck="false">
                     <label id="id">{'#'}</label><label id="useraccountcss">{'useraccount'}</label><label id="brace">{' {'}</label>
@@ -140,7 +140,7 @@ export default class LoginForm extends React.Component {
                     {!this.state.createUserFlag ? <input id="loginSubmit" type="submit" value={"Login"} /> : null }
                     {!this.state.createUserFlag ? <button type="button" id="createAccountButton" onClick={this.handleCreateClick}>Create Account</button> : null}
                     {this.state.createUserFlag ? <button id="loginSubmit" onClick={this.handleCreateSubmit}>Create</button> : null}
-                    {this.state.createUserFlag ? <button type="button" onClick={this.handleBackClick}>Back</button> : null}
+                    {this.state.createUserFlag ? <button id="backbutton" type="button" onClick={this.handleBackClick}>Back</button> : null}
                 </form>
             </div>
         )
