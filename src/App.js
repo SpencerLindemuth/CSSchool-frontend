@@ -73,7 +73,7 @@ export default class App extends React.Component{
       this.getLessons()}
     if(this.props.location && this.props.location.state.update){
       this.getLessons()}
-    if(localStorage.getItem("jwt") !== "null")
+    if(localStorage.jwt && localStorage.jwt !== "null")
       this.setState({
         loggedIn: true
     })
