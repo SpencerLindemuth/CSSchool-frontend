@@ -158,7 +158,7 @@ export default class Lesson extends React.Component {
                 {lesson ? <div className="actionbar">
                     <span className="leftbuttons">
                         <button onClick={this.prevButton}>&#8592; Prev</button>
-                        <button id="lessonbutton" onClick={this.handleLessonClick}>{this.state.lessonView ? "Code": "Lesson"}</button>
+                        <button id="lessonbutton" onClick={this.handleLessonClick}>{this.state.lessonView ? "Objective": "Lesson"}</button>
                     </span>
                     <span className="rightbuttons">
                         <button onClick={this.resetButton}>Reset</button>
