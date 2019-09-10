@@ -16,7 +16,7 @@ export default class Lesson extends React.Component {
 
     applyCss = (css) => {
         let parsedCss = css.replace(/\s/g, "")
-        let sheet = window.document.styleSheets[0];
+        let sheet = window.document.styleSheets[0]
         let parsedArray = parsedCss.split("")
         try{
             for (let i = 0; i < parsedArray.length; i++) {
@@ -49,12 +49,12 @@ export default class Lesson extends React.Component {
             if(this.props.loggedIn && localStorage.user && JSON.parse(localStorage.user).username && JSON.parse(localStorage.user).username.length > 0){
                 this.saveProgress()
             }
-            this.removeStyles()
-            this.props.history.push(`/lesson/${this.pathName() + 1}`)
+            this.removeFinalStyle()
             this.setState({
                 lessonView: true,
                 guessed: false
             })
+            this.props.history.push(`/lesson/${this.pathName() + 1}`)
         }
 
     }
@@ -124,7 +124,17 @@ export default class Lesson extends React.Component {
     removeStyles = () => {
         let sheet = window.document.styleSheets[0];
         for (let i = 0; i < this.state.styleAdded; i++){
-            sheet.deleteRule(sheet.cssRules.length-1);
+            window.document.styleSheets[0].removeRule(window.document.styleSheets[0].cssRules.length - 1)
+        }
+        this.setState({
+            styleAdded: 0
+        })
+    }
+
+    removeFinalStyle = () => {
+        let sheet = window.document.styleSheets[0];
+        for (let i = 0; i < this.state.styleAdded + 1; i++){
+            window.document.styleSheets[0].removeRule(window.document.styleSheets[0].cssRules.length - 1)
         }
         this.setState({
             styleAdded: 0
