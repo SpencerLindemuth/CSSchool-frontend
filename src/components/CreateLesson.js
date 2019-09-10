@@ -224,7 +224,7 @@ export default class CreateLesson extends React.Component {
 
     formSubmit = (ev) => {
         ev.preventDefault()
-        fetch("http://10.137.5.116:3000/api/lessons", {
+        fetch("https://csschool-api.herokuapp.com/api/lessons", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",

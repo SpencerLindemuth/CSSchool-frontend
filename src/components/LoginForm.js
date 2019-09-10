@@ -60,7 +60,7 @@ export default class LoginForm extends React.Component {
             })
             passwordField.style.borderBottomColor = "#EF476F"
         }else{
-            fetch("http://10.137.5.116:3000/api/users", {
+            fetch("https://csschool-api.herokuapp.com/api/users", {
                 method: "POST",
                 headers: {
                     "Content-Type" : "application/json"
@@ -95,7 +95,7 @@ export default class LoginForm extends React.Component {
 
     handleSubmit = (ev) => {
         ev.preventDefault()
-        fetch("http://10.137.5.116:3000/api/login", {
+        fetch("https://csschool-api.herokuapp.com/api/login", {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json"

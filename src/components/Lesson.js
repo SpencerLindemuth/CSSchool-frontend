@@ -60,7 +60,7 @@ export default class Lesson extends React.Component {
     }
 
     saveProgress = () => {
-        fetch('http://10.137.5.116:3000/api/users/save', {
+        fetch('https://csschool-api.herokuapp.com/api/users/save', {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",

@@ -16,7 +16,7 @@ export default class WelcomeScreen extends React.Component {
     }
 
     handleContinueClick = () => {
-        return fetch("http://10.137.5.116:3000/api/users/progress", {
+        return fetch("https://csschool-api.herokuapp.com/api/users/progress", {
             method: "GET",
             headers: {
               "Content-Type" : "application/json",
