@@ -223,6 +223,12 @@ html{
   color: white;
 }
 
+#createformerror{
+  height: 2vh;
+  color: #EF476F;
+  font-size: 1em;
+}
+
 .formpagebody{
   margin-top: 2%;
   display: grid;

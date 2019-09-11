@@ -24,7 +24,8 @@ export default class CreateLesson extends React.Component {
         lessonTemplateFocus: false,
         buttonStyleAdded: false,
         lessonCreated: false,
-        lesson_number: 0
+        lesson_number: 0,
+        error: "",
     }
 
     titleChange = (ev) => {
@@ -225,7 +226,6 @@ export default class CreateLesson extends React.Component {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
-                "Authorization" : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJ1c2VybmFtZSI6InJvaGl0In0.UMCC5rxzkEkVqtF4mdepBFoxlaC2k0ARcMx6HJIgjTg"
             },
             body: JSON.stringify({
                 template: this.state.lessonTemplate,
@@ -243,14 +243,34 @@ export default class CreateLesson extends React.Component {
                 button_three_action_css: this.state.button3css,
                 button_four_action_css: this.state.button4css
             })
-        }).then(res => res.json())
+        }).then(res => res.ok ? res.json() : null)
         .then(data => {
-            this.setState({
-                lessonCreated: true,
-                lesson_number: data.lesson_number
-            })
-            this.props.updateLessons()
+            if(data !== null){
+                this.setState({
+                    lessonCreated: true,
+                    lesson_number: data.lesson_number
+                })
+                this.props.updateLessons()
+            }
+            else{
+                //window.scrollTo(0, 0);
+                this.scroll(document.documentElement, 0, 250);   
+                this.setState({
+                    error: "There was an error processing your request. Please try again."
+                })
+            }
         })
+    }
+
+    scroll(element, to, duration) {
+        if (duration < 0) return;
+        let difference = to - element.scrollTop;
+        let perTick = difference / duration * 10;
+        
+        setTimeout(() => {
+            element.scrollTop = element.scrollTop + perTick;
+            this.scroll(element, to, duration - 10);
+        }, 10);
     }
 
     render(){
@@ -260,6 +280,7 @@ export default class CreateLesson extends React.Component {
                 {this.state.lessonCreated ? <LessonCreated lessonId={this.state.lesson_number} /> : 
                 <div>
                     <h1 id="createlessonh1">Create a new lesson</h1>
+                    <div id="createformerror">{this.state.error}</div>
                     <div className="formpagebody">
                         <div className="formwrapper">
                             <form id="createlessonform" onSubmit={this.formSubmit}>
