@@ -6,9 +6,8 @@ export default class CodeView extends React.Component {
     stripEscapes = () => {
         console.log(this.props.code)
         let x = String.raw`${this.props.code}`
-        let y = x.replace("\\n", "\n" )
-        let z = y.replace("\\v", "\v")
-        return z.replace("\\t", "\t")
+        let y = x.split("\\n").join("\n")
+        return y.split("\\t").join("\t")
     }
 
     render(){
