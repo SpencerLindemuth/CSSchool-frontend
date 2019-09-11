@@ -35,15 +35,35 @@ export default class CreateLesson extends React.Component {
     }
 
     lessonTextChange = (ev) => {
-        this.setState({
-            lessonText: ev.target.value
-        })
+        let target = ev.target.value
+        let sanitizeCheck = target.match(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img)
+        if(sanitizeCheck){
+            let sanitized = target.replace(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img, "")
+            this.setState({
+                lessonText: sanitized
+            })
+        }
+        else{
+            this.setState({
+                lessonText: ev.target.value
+            })
+        }
     }
 
     lessonTemplateChange = (ev) => {
-        this.setState({
-            lessonTemplate: ev.target.value
-        })
+        let target = ev.target.value
+        let sanitizeCheck = target.match(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img)
+        if(sanitizeCheck){
+            let sanitized = target.replace(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img, "")
+            this.setState({
+                lessonTemplate: sanitized
+            })
+        }
+        else{
+            this.setState({
+                lessonTemplate: ev.target.value
+            })
+        }
     }
 
     lessonHtmlChange = (ev) => {
