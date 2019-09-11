@@ -222,6 +222,26 @@ export default class CreateLesson extends React.Component {
 
     formSubmit = (ev) => {
         ev.preventDefault()
+        if(this.state.lessonTemplate === ""){
+            this.setState({
+                error: "CSS Template cannot be empty"
+            })
+            this.scroll(document.documentElement, 0, 250)
+            return
+        }else if(this.state.lessonText === ""){
+            this.setState({
+                error: "Lesson Directions cannot be empty"
+            })
+            this.scroll(document.documentElement, 0, 250)
+            return
+        }else if(this.state.lessonHtml === ""){
+            this.setState({
+                error: "Lesson HTML cannot be empty"
+            })
+            this.scroll(document.documentElement, 0, 250)
+            return
+        }
+        else{
         fetch("https://csschool-api.herokuapp.com/api/lessons", {
             method: "POST",
             headers: {
@@ -254,23 +274,23 @@ export default class CreateLesson extends React.Component {
             }
             else{
                 //window.scrollTo(0, 0);
-                this.scroll(document.documentElement, 0, 250);   
+                this.scroll(document.documentElement, 0, 250)   
                 this.setState({
                     error: "There was an error processing your request. Please try again."
                 })
             }
-        })
+        })}
     }
 
     scroll(element, to, duration) {
-        if (duration < 0) return;
-        let difference = to - element.scrollTop;
-        let perTick = difference / duration * 10;
+        if (duration < 0) return
+        let difference = to - element.scrollTop
+        let perTick = difference / duration * 10
         
         setTimeout(() => {
-            element.scrollTop = element.scrollTop + perTick;
-            this.scroll(element, to, duration - 10);
-        }, 10);
+            element.scrollTop = element.scrollTop + perTick
+            this.scroll(element, to, duration - 10)
+        }, 10)
     }
 
     render(){
