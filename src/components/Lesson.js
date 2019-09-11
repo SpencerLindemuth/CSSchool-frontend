@@ -76,7 +76,7 @@ export default class Lesson extends React.Component {
 
     getComponent = () => {
         if(this.state.lessonView){
-           return  <LessonView lesson={this.findLesson().lesson} title={this.findLesson().title}/>
+           return  <LessonView lesson={this.findLesson().lesson} lessonNumber={this.pathName()} title={this.findLesson().title}/>
         }
         else{
            return <ActionView html={this.findLesson().html} css={this.findLesson().css} handleNextClick={this.handleNextClick} setInitialStyles={this.setInitialStyles} removeInitialStyles={this.removeInitialStyles}/>
