@@ -268,7 +268,21 @@ export default class CreateLesson extends React.Component {
             if(data !== null){
                 this.setState({
                     lessonCreated: true,
-                    lesson_number: data.lesson_number
+                    lesson_number: data.lesson_number,
+                    template: "",
+                    lesson: "",
+                    title: "",
+                    html: "",
+                    css: "",
+                    button_one_text: "",
+                    button_two_text: "",
+                    button_three_text: "",
+                    button_four_text: "",
+                    button_one_action_css: "",
+                    button_two_action_css: "",
+                    button_three_action_css: "",
+                    button_four_action_css: "",
+                    error: ""
                 })
                 this.props.updateLessons()
             }
