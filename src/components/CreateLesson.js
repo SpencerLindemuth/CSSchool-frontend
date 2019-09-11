@@ -36,9 +36,9 @@ export default class CreateLesson extends React.Component {
 
     lessonTextChange = (ev) => {
         let target = ev.target.value
-        let sanitizeCheck = target.match(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img)
+        let sanitizeCheck = target.match(/<script/img)
         if(sanitizeCheck){
-            let sanitized = target.replace(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img, "")
+            let sanitized = target.replace(/<script/img, "")
             this.setState({
                 lessonText: sanitized
             })
@@ -52,9 +52,9 @@ export default class CreateLesson extends React.Component {
 
     lessonTemplateChange = (ev) => {
         let target = ev.target.value
-        let sanitizeCheck = target.match(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img)
+        let sanitizeCheck = target.match(/<script/img)
         if(sanitizeCheck){
-            let sanitized = target.replace(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img, "")
+            let sanitized = target.replace(/<script/img, "")
             this.setState({
                 lessonTemplate: sanitized
             })
@@ -68,16 +68,17 @@ export default class CreateLesson extends React.Component {
 
     lessonHtmlChange = (ev) => {
         let target = ev.target.value
-        let sanitizeCheck = target.match(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img)
+        let sanitizeCheck = target.match(/<script/img)
         if(sanitizeCheck){
-            let sanitized = target.replace(/<script(?:(?!\/\/)(?!\/\*)[^'"]|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\/\/.*(?:\n)|\/\*(?:(?:.|\s))*?\*\/)*?<\/script>/img, "")
+            let sanitized = target.replace(/<script/img, "")
+            console.log(sanitized)
             this.setState({
                 lessonHtml: sanitized
             })
         }
         else{
             this.setState({
-                lessonHtml: target
+                lessonHtml: ev.target.value
             })
         }
         
