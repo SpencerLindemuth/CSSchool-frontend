@@ -200,12 +200,12 @@ export default class Lesson extends React.Component {
                     </div>
                     <div id="answerbuttonspans">
                         <span id="answerbuttonspanfirst">
-                            {lesson ? <button id="answer1" name="button_one" onClick={this.answerButtonClick}>{lesson.button_one_text}</button> : null}
-                            {lesson ? <button id="answer2" name="button_two" onClick={this.answerButtonClick}>{lesson.button_two_text}</button> : null}
+                            {lesson && lesson.button_one_text ? <button id="answer1" name="button_one" onClick={this.answerButtonClick}>{lesson.button_one_text}</button> : null}
+                            {lesson && lesson.button_two_text? <button id="answer2" name="button_two" onClick={this.answerButtonClick}>{lesson.button_two_text}</button> : null}
                         </span>
                         <span id="answerbuttonspanfirst">
-                            {lesson ? <button id="answer3" name="button_three" onClick={this.answerButtonClick}>{lesson.button_three_text}</button> : null}
-                            {lesson ? <button id="answer4" name="button_four" onClick={this.answerButtonClick}>{lesson.button_four_text}</button> : null}
+                            {lesson && lesson.button_three_text ? <button id="answer3" name="button_three" onClick={this.answerButtonClick}>{lesson.button_three_text}</button> : null}
+                            {lesson && lesson.button_four_text? <button id="answer4" name="button_four" onClick={this.answerButtonClick}>{lesson.button_four_text}</button> : null}
                         </span>
                     </div>
                 </div>
